@@ -1,0 +1,3161 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A high-performance, async-first Python SDK for Jupiter Ultra API">
+      
+      
+        <meta name="author" content="Jupiter Team">
+      
+      
+        <link rel="canonical" href="https://github.com/solanab/pyjupiter/zh/api-reference/">
+      
+      
+        <link rel="prev" href="../getting-started/">
+      
+      
+        <link rel="next" href="../examples/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+    
+    
+      
+        <title>API 参考文档 - Jupiter Python SDK</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+  
+  
+    
+    
+  
+  
+  <style>:root{--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M20%204c1.11%200%202%20.89%202%202v12c0%201.11-.89%202-2%202H4c-1.11%200-2-.89-2-2V6c0-1.11.89-2%202-2zM8.5%2015V9H7.25v3.5L4.75%209H3.5v6h1.25v-3.5L7.3%2015zm5-4.74V9h-4v6h4v-1.25H11v-1.11h2.5v-1.26H11v-1.12zm7%203.74V9h-1.25v4.5h-1.12V10h-1.25v3.5h-1.13V9H14.5v5a1%201%200%200%200%201%201h4a1%201%200%200%200%201-1%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#api" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../" title="Jupiter Python SDK" class="md-header__button md-logo" aria-label="Jupiter Python SDK" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m23.876 18.031-3.962 4.14a.9.9 0 0 1-.306.21.9.9 0 0 1-.367.074H.46a.47.47 0 0 1-.252-.073.45.45 0 0 1-.17-.196.44.44 0 0 1-.031-.255.44.44 0 0 1 .117-.23l3.965-4.139a.9.9 0 0 1 .305-.21.9.9 0 0 1 .366-.075h18.78a.47.47 0 0 1 .252.074.45.45 0 0 1 .17.196.44.44 0 0 1 .031.255.44.44 0 0 1-.117.23m-3.962-8.335a.9.9 0 0 0-.306-.21.9.9 0 0 0-.367-.075H.46a.47.47 0 0 0-.252.073.45.45 0 0 0-.17.197.44.44 0 0 0-.031.254.44.44 0 0 0 .117.23l3.965 4.14a.9.9 0 0 0 .305.21.9.9 0 0 0 .366.074h18.78a.47.47 0 0 0 .252-.073.45.45 0 0 0 .17-.196.44.44 0 0 0 .031-.255.44.44 0 0 0-.117-.23zM.46 6.723h18.782a.9.9 0 0 0 .367-.075.9.9 0 0 0 .306-.21l3.962-4.14a.44.44 0 0 0 .117-.23.44.44 0 0 0-.032-.254.45.45 0 0 0-.17-.196.47.47 0 0 0-.252-.073H4.76a.9.9 0 0 0-.366.074.9.9 0 0 0-.305.21L.125 5.97a.44.44 0 0 0-.117.23.44.44 0 0 0 .03.254.45.45 0 0 0 .17.196.47.47 0 0 0 .252.074z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Jupiter Python SDK
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              API 参考文档
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="选择当前语言">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../api-reference/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="zh" class="md-select__link">
+              简体中文
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/solanab/pyjupiter" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    solanab/pyjupiter
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  首页
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../getting-started/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  开始使用
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+    
+  
+  API 参考
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../examples/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  示例
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../" title="Jupiter Python SDK" class="md-nav__button md-logo" aria-label="Jupiter Python SDK" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m23.876 18.031-3.962 4.14a.9.9 0 0 1-.306.21.9.9 0 0 1-.367.074H.46a.47.47 0 0 1-.252-.073.45.45 0 0 1-.17-.196.44.44 0 0 1-.031-.255.44.44 0 0 1 .117-.23l3.965-4.139a.9.9 0 0 1 .305-.21.9.9 0 0 1 .366-.075h18.78a.47.47 0 0 1 .252.074.45.45 0 0 1 .17.196.44.44 0 0 1 .031.255.44.44 0 0 1-.117.23m-3.962-8.335a.9.9 0 0 0-.306-.21.9.9 0 0 0-.367-.075H.46a.47.47 0 0 0-.252.073.45.45 0 0 0-.17.197.44.44 0 0 0-.031.254.44.44 0 0 0 .117.23l3.965 4.14a.9.9 0 0 0 .305.21.9.9 0 0 0 .366.074h18.78a.47.47 0 0 0 .252-.073.45.45 0 0 0 .17-.196.44.44 0 0 0 .031-.255.44.44 0 0 0-.117-.23zM.46 6.723h18.782a.9.9 0 0 0 .367-.075.9.9 0 0 0 .306-.21l3.962-4.14a.44.44 0 0 0 .117-.23.44.44 0 0 0-.032-.254.45.45 0 0 0-.17-.196.47.47 0 0 0-.252-.073H4.76a.9.9 0 0 0-.366.074.9.9 0 0 0-.305.21L.125 5.97a.44.44 0 0 0-.117.23.44.44 0 0 0 .03.254.45.45 0 0 0 .17.196.47.47 0 0 0 .252.074z"/></svg>
+
+    </a>
+    Jupiter Python SDK
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/solanab/pyjupiter" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    solanab/pyjupiter
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    首页
+    
+  </span>
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            首页
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    开始使用
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            开始使用
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    快速开始
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    API 参考
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            API 参考
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    API 参考文档
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    API 参考文档
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      📚 目录
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🏛️ 客户端类
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🏛️ 客户端类">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#asyncultraapiclient" class="md-nav__link">
+    <span class="md-ellipsis">
+      AsyncUltraApiClient
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ultraapiclient" class="md-nav__link">
+    <span class="md-ellipsis">
+      UltraApiClient
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 核心方法
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 核心方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#order" class="md-nav__link">
+    <span class="md-ellipsis">
+      order()
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="order()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      方法签名
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#execute" class="md-nav__link">
+    <span class="md-ellipsis">
+      execute()
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="execute()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      方法签名
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#order_and_execute" class="md-nav__link">
+    <span class="md-ellipsis">
+      order_and_execute()
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="order_and_execute()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      方法签名
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#balances" class="md-nav__link">
+    <span class="md-ellipsis">
+      balances()
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="balances()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      方法签名
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shield" class="md-nav__link">
+    <span class="md-ellipsis">
+      shield()
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shield()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      方法签名
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      📦 数据模型
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📦 数据模型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ultraorderrequest" class="md-nav__link">
+    <span class="md-ellipsis">
+      UltraOrderRequest
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="UltraOrderRequest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      字段
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ultraexecuterequest" class="md-nav__link">
+    <span class="md-ellipsis">
+      UltraExecuteRequest
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="UltraExecuteRequest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      字段
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚙️ 配置选项
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚙️ 配置选项">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      客户端配置
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="客户端配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      超时设置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      代理配置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    <span class="md-ellipsis">
+      自定义请求头
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssl" class="md-nav__link">
+    <span class="md-ellipsis">
+      SSL 配置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      DNS 配置
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    <span class="md-ellipsis">
+      环境变量
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="环境变量">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_35" class="md-nav__link">
+    <span class="md-ellipsis">
+      私钥格式
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_36" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚨 错误处理
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚨 错误处理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_37" class="md-nav__link">
+    <span class="md-ellipsis">
+      常见异常
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_38" class="md-nav__link">
+    <span class="md-ellipsis">
+      响应状态码
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_39" class="md-nav__link">
+    <span class="md-ellipsis">
+      错误响应结构
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_40" class="md-nav__link">
+    <span class="md-ellipsis">
+      常见错误代码
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_41" class="md-nav__link">
+    <span class="md-ellipsis">
+      错误处理示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_42" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ 实用方法
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ 实用方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_public_key" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_public_key()
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="get_public_key()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_43" class="md-nav__link">
+    <span class="md-ellipsis">
+      方法签名
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_44" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_45" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#close" class="md-nav__link">
+    <span class="md-ellipsis">
+      close()
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="close()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_46" class="md-nav__link">
+    <span class="md-ellipsis">
+      方法签名
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_47" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_48" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 高级使用模式
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔍 高级使用模式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_49" class="md-nav__link">
+    <span class="md-ellipsis">
+      速率限制
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_50" class="md-nav__link">
+    <span class="md-ellipsis">
+      重试逻辑
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_51" class="md-nav__link">
+    <span class="md-ellipsis">
+      批量操作
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_52" class="md-nav__link">
+    <span class="md-ellipsis">
+      上下文管理器模式
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_53" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 性能优化建议
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 性能优化建议">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_54" class="md-nav__link">
+    <span class="md-ellipsis">
+      连接复用
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_55" class="md-nav__link">
+    <span class="md-ellipsis">
+      并发操作
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_56" class="md-nav__link">
+    <span class="md-ellipsis">
+      超时配置
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    示例
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            示例
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    示例代码
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      📚 目录
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🏛️ 客户端类
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🏛️ 客户端类">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#asyncultraapiclient" class="md-nav__link">
+    <span class="md-ellipsis">
+      AsyncUltraApiClient
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ultraapiclient" class="md-nav__link">
+    <span class="md-ellipsis">
+      UltraApiClient
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 核心方法
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 核心方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#order" class="md-nav__link">
+    <span class="md-ellipsis">
+      order()
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="order()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      方法签名
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#execute" class="md-nav__link">
+    <span class="md-ellipsis">
+      execute()
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="execute()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      方法签名
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#order_and_execute" class="md-nav__link">
+    <span class="md-ellipsis">
+      order_and_execute()
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="order_and_execute()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      方法签名
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#balances" class="md-nav__link">
+    <span class="md-ellipsis">
+      balances()
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="balances()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      方法签名
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shield" class="md-nav__link">
+    <span class="md-ellipsis">
+      shield()
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="shield()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      方法签名
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      📦 数据模型
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📦 数据模型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ultraorderrequest" class="md-nav__link">
+    <span class="md-ellipsis">
+      UltraOrderRequest
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="UltraOrderRequest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      字段
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ultraexecuterequest" class="md-nav__link">
+    <span class="md-ellipsis">
+      UltraExecuteRequest
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="UltraExecuteRequest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      字段
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚙️ 配置选项
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚙️ 配置选项">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      客户端配置
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="客户端配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      超时设置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      代理配置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    <span class="md-ellipsis">
+      自定义请求头
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssl" class="md-nav__link">
+    <span class="md-ellipsis">
+      SSL 配置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      DNS 配置
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    <span class="md-ellipsis">
+      环境变量
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="环境变量">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_35" class="md-nav__link">
+    <span class="md-ellipsis">
+      私钥格式
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_36" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚨 错误处理
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚨 错误处理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_37" class="md-nav__link">
+    <span class="md-ellipsis">
+      常见异常
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_38" class="md-nav__link">
+    <span class="md-ellipsis">
+      响应状态码
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_39" class="md-nav__link">
+    <span class="md-ellipsis">
+      错误响应结构
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_40" class="md-nav__link">
+    <span class="md-ellipsis">
+      常见错误代码
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_41" class="md-nav__link">
+    <span class="md-ellipsis">
+      错误处理示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_42" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ 实用方法
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ 实用方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_public_key" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_public_key()
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="get_public_key()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_43" class="md-nav__link">
+    <span class="md-ellipsis">
+      方法签名
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_44" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_45" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#close" class="md-nav__link">
+    <span class="md-ellipsis">
+      close()
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="close()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_46" class="md-nav__link">
+    <span class="md-ellipsis">
+      方法签名
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_47" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_48" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 高级使用模式
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔍 高级使用模式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_49" class="md-nav__link">
+    <span class="md-ellipsis">
+      速率限制
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_50" class="md-nav__link">
+    <span class="md-ellipsis">
+      重试逻辑
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_51" class="md-nav__link">
+    <span class="md-ellipsis">
+      批量操作
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_52" class="md-nav__link">
+    <span class="md-ellipsis">
+      上下文管理器模式
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_53" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 性能优化建议
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 性能优化建议">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_54" class="md-nav__link">
+    <span class="md-ellipsis">
+      连接复用
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_55" class="md-nav__link">
+    <span class="md-ellipsis">
+      并发操作
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_56" class="md-nav__link">
+    <span class="md-ellipsis">
+      超时配置
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="api">API 参考文档</h1>
+<p>Jupiter Python SDK 的完整参考文档。</p>
+<h2 id="_1">📚 目录</h2>
+<ul>
+<li><a href="#客户端类">客户端类</a></li>
+<li><a href="#核心方法">核心方法</a></li>
+<li><a href="#数据模型">数据模型</a></li>
+<li><a href="#配置选项">配置选项</a></li>
+<li><a href="#错误处理">错误处理</a></li>
+<li><a href="#实用方法">实用方法</a></li>
+</ul>
+<h2 id="_2">🏛️ 客户端类</h2>
+<h3 id="asyncultraapiclient">AsyncUltraApiClient</h3>
+<p>用于 Jupiter Ultra API 交互的主要异步客户端。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pyjupiter.clients.ultra_api_client</span><span class="w"> </span><span class="kn">import</span> <span class="n">AsyncUltraApiClient</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">client</span> <span class="o">=</span> <span class="n">AsyncUltraApiClient</span><span class="p">(</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;可选的API密钥&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">private_key_env_var</span><span class="o">=</span><span class="s2">&quot;PRIVATE_KEY&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">client_kwargs</span><span class="o">=</span><span class="p">{}</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">)</span>
+</code></pre></div>
+<p><strong>构造函数参数：</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>api_key</code></td>
+<td><code>str \| None</code></td>
+<td><code>None</code></td>
+<td>Jupiter API 密钥用于增强功能</td>
+</tr>
+<tr>
+<td><code>private_key_env_var</code></td>
+<td><code>str</code></td>
+<td><code>"PRIVATE_KEY"</code></td>
+<td>私钥的环境变量名</td>
+</tr>
+<tr>
+<td><code>client_kwargs</code></td>
+<td><code>dict</code></td>
+<td><code>{}</code></td>
+<td>附加的 curl_cffi 客户端配置</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ultraapiclient">UltraApiClient</h3>
+<p>用于 Jupiter Ultra API 交互的同步客户端。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pyjupiter.clients.ultra_api_client</span><span class="w"> </span><span class="kn">import</span> <span class="n">UltraApiClient</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">client</span> <span class="o">=</span> <span class="n">UltraApiClient</span><span class="p">(</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;可选的API密钥&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="n">private_key_env_var</span><span class="o">=</span><span class="s2">&quot;PRIVATE_KEY&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="n">client_kwargs</span><span class="o">=</span><span class="p">{}</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="p">)</span>
+</code></pre></div>
+<p><strong>构造函数参数：</strong> 与 <code>AsyncUltraApiClient</code> 相同</p>
+<h2 id="_3">🔧 核心方法</h2>
+<h3 id="order">order()</h3>
+<p>创建交换订单而不执行它。</p>
+<h4 id="_4">方法签名</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 异步</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">order</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">UltraOrderRequest</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># 同步</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">order</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">UltraOrderRequest</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span>
+</code></pre></div>
+<h4 id="_5">参数</h4>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>request</code></td>
+<td><code>UltraOrderRequest</code></td>
+<td>订单请求配置</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_6">返回值</h4>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>requestId</code></td>
+<td><code>str</code></td>
+<td>订单的唯一标识符</td>
+</tr>
+<tr>
+<td><code>transaction</code></td>
+<td><code>str</code></td>
+<td>Base64 编码的交易</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>str</code></td>
+<td>订单状态（<code>"Success"</code> 或 <code>"Failed"</code>）</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_7">示例</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pyjupiter.models.ultra_api.ultra_order_request_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">UltraOrderRequest</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">order_request</span> <span class="o">=</span> <span class="n">UltraOrderRequest</span><span class="p">(</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="n">input_mint</span><span class="o">=</span><span class="s2">&quot;So11111111111111111111111111111111111111112&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="n">output_mint</span><span class="o">=</span><span class="s2">&quot;EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="n">amount</span><span class="o">=</span><span class="mi">10000000</span><span class="p">,</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="n">taker</span><span class="o">=</span><span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">get_public_key</span><span class="p">()</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="p">)</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">order</span><span class="p">(</span><span class="n">order_request</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="execute">execute()</h3>
+<p>执行先前创建的订单。</p>
+<h4 id="_8">方法签名</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># 异步</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">UltraExecuteRequest</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># 同步</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">UltraExecuteRequest</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span>
+</code></pre></div>
+<h4 id="_9">参数</h4>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>request</code></td>
+<td><code>UltraExecuteRequest</code></td>
+<td>包含签名交易的执行请求</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_10">返回值</h4>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>signature</code></td>
+<td><code>str</code></td>
+<td>交易签名</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>str</code></td>
+<td>执行状态（<code>"Success"</code> 或 <code>"Failed"</code>）</td>
+</tr>
+<tr>
+<td><code>error</code></td>
+<td><code>str</code></td>
+<td>错误信息（如果失败）</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_11">示例</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pyjupiter.models.ultra_api.ultra_execute_request_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">UltraExecuteRequest</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">execute_request</span> <span class="o">=</span> <span class="n">UltraExecuteRequest</span><span class="p">(</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="n">request_id</span><span class="o">=</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;requestId&quot;</span><span class="p">],</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="n">signed_transaction</span><span class="o">=</span><span class="s2">&quot;base64_signed_transaction&quot;</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="p">)</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">execute_request</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="order_and_execute">order_and_execute()</h3>
+<p>在单次调用中创建并执行订单。</p>
+<h4 id="_12">方法签名</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># 异步</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">order_and_execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">UltraOrderRequest</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># 同步</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">order_and_execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">UltraOrderRequest</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span>
+</code></pre></div>
+<h4 id="_13">参数</h4>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>request</code></td>
+<td><code>UltraOrderRequest</code></td>
+<td>订单请求配置</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_14">返回值</h4>
+<p>与 <code>execute()</code> 方法相同。</p>
+<h4 id="_15">示例</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">order_and_execute</span><span class="p">(</span><span class="n">order_request</span><span class="p">)</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;交易链接: https://solscan.io/tx/</span><span class="si">{</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;signature&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="balances">balances()</h3>
+<p>获取 Solana 地址的代币余额。</p>
+<h4 id="_16">方法签名</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># 异步</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">balances</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># 同步</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">balances</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span>
+</code></pre></div>
+<h4 id="_17">参数</h4>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>address</code></td>
+<td><code>str</code></td>
+<td>Solana 公钥地址</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_18">返回值</h4>
+<p>代币符号到余额详情的字典映射：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>amount</code></td>
+<td><code>str</code></td>
+<td>最小单位的原始金额</td>
+</tr>
+<tr>
+<td><code>uiAmount</code></td>
+<td><code>float</code></td>
+<td>人类可读的金额</td>
+</tr>
+<tr>
+<td><code>slot</code></td>
+<td><code>int</code></td>
+<td>区块链槽位号</td>
+</tr>
+<tr>
+<td><code>isFrozen</code></td>
+<td><code>bool</code></td>
+<td>代币账户是否被冻结</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_19">示例</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">address</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">get_public_key</span><span class="p">()</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">balances</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">balances</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="k">for</span> <span class="n">token</span><span class="p">,</span> <span class="n">details</span> <span class="ow">in</span> <span class="n">balances</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">details</span><span class="p">[</span><span class="s1">&#39;uiAmount&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (冻结: </span><span class="si">{</span><span class="n">details</span><span class="p">[</span><span class="s1">&#39;isFrozen&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="shield">shield()</h3>
+<p>检查代币的安全警告。</p>
+<h4 id="_20">方法签名</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># 异步</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">shield</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mints</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">dict</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1"># 同步</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">shield</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mints</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">dict</span>
+</code></pre></div>
+<h4 id="_21">参数</h4>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>mints</code></td>
+<td><code>list[str]</code></td>
+<td>代币铸造地址列表</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_22">返回值</h4>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>warnings</code></td>
+<td><code>dict</code></td>
+<td>铸造地址到警告列表的映射</td>
+</tr>
+</tbody>
+</table>
+<p>警告对象结构：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>type</code></td>
+<td><code>str</code></td>
+<td>警告类型</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td><code>str</code></td>
+<td>警告描述</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_23">示例</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">mints</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    <span class="s2">&quot;So11111111111111111111111111111111111111112&quot;</span><span class="p">,</span>  <span class="c1"># WSOL</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>    <span class="s2">&quot;EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v&quot;</span><span class="p">,</span>  <span class="c1"># USDC</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="p">]</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="n">shield_response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">shield</span><span class="p">(</span><span class="n">mints</span><span class="p">)</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="k">for</span> <span class="n">mint</span><span class="p">,</span> <span class="n">warnings</span> <span class="ow">in</span> <span class="n">shield_response</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;warnings&quot;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>    <span class="k">if</span> <span class="n">warnings</span><span class="p">:</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;⚠️ </span><span class="si">{</span><span class="n">mint</span><span class="si">}</span><span class="s2"> 有警告:&quot;</span><span class="p">)</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>        <span class="k">for</span> <span class="n">warning</span> <span class="ow">in</span> <span class="n">warnings</span><span class="p">:</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - </span><span class="si">{</span><span class="n">warning</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">warning</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="_24">📦 数据模型</h2>
+<h3 id="ultraorderrequest">UltraOrderRequest</h3>
+<p>用于创建交换订单的 Pydantic 模型。</p>
+<h4 id="_25">字段</h4>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必需</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>input_mint</code></td>
+<td><code>str</code></td>
+<td>✅</td>
+<td>输入代币铸造地址</td>
+</tr>
+<tr>
+<td><code>output_mint</code></td>
+<td><code>str</code></td>
+<td>✅</td>
+<td>输出代币铸造地址</td>
+</tr>
+<tr>
+<td><code>amount</code></td>
+<td><code>int</code></td>
+<td>✅</td>
+<td>最小单位的金额</td>
+</tr>
+<tr>
+<td><code>taker</code></td>
+<td><code>str</code></td>
+<td>❌</td>
+<td>接收者的公钥</td>
+</tr>
+<tr>
+<td><code>referral_account</code></td>
+<td><code>str</code></td>
+<td>❌</td>
+<td>推荐账户地址</td>
+</tr>
+<tr>
+<td><code>referral_fee</code></td>
+<td><code>int</code></td>
+<td>❌</td>
+<td>推荐费用（基点）</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_26">示例</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pyjupiter.models.ultra_api.ultra_order_request_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">UltraOrderRequest</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="n">request</span> <span class="o">=</span> <span class="n">UltraOrderRequest</span><span class="p">(</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>    <span class="n">input_mint</span><span class="o">=</span><span class="s2">&quot;So11111111111111111111111111111111111111112&quot;</span><span class="p">,</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>    <span class="n">output_mint</span><span class="o">=</span><span class="s2">&quot;EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v&quot;</span><span class="p">,</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>    <span class="n">amount</span><span class="o">=</span><span class="mi">10000000</span><span class="p">,</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>    <span class="n">taker</span><span class="o">=</span><span class="s2">&quot;your_public_key&quot;</span><span class="p">,</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>    <span class="n">referral_account</span><span class="o">=</span><span class="s2">&quot;referral_address&quot;</span><span class="p">,</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>    <span class="n">referral_fee</span><span class="o">=</span><span class="mi">50</span>  <span class="c1"># 0.5%</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="p">)</span>
+</code></pre></div>
+<h3 id="ultraexecuterequest">UltraExecuteRequest</h3>
+<p>用于执行订单的 Pydantic 模型。</p>
+<h4 id="_27">字段</h4>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必需</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>request_id</code></td>
+<td><code>str</code></td>
+<td>✅</td>
+<td>来自订单响应的请求 ID</td>
+</tr>
+<tr>
+<td><code>signed_transaction</code></td>
+<td><code>str</code></td>
+<td>✅</td>
+<td>Base64 编码的签名交易</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_28">示例</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pyjupiter.models.ultra_api.ultra_execute_request_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">UltraExecuteRequest</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="n">request</span> <span class="o">=</span> <span class="n">UltraExecuteRequest</span><span class="p">(</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>    <span class="n">request_id</span><span class="o">=</span><span class="s2">&quot;order_request_id&quot;</span><span class="p">,</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>    <span class="n">signed_transaction</span><span class="o">=</span><span class="s2">&quot;base64_encoded_transaction&quot;</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="p">)</span>
+</code></pre></div>
+<h2 id="_29">⚙️ 配置选项</h2>
+<h3 id="_30">客户端配置</h3>
+<p><code>client_kwargs</code> 参数允许广泛的自定义：</p>
+<h4 id="_31">超时设置</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">client</span> <span class="o">=</span> <span class="n">AsyncUltraApiClient</span><span class="p">(</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>    <span class="n">client_kwargs</span><span class="o">=</span><span class="p">{</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>        <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>  <span class="c1"># 30 秒</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>    <span class="p">}</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="p">)</span>
+</code></pre></div>
+<h4 id="_32">代理配置</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># SOCKS5 代理</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">client</span> <span class="o">=</span> <span class="n">AsyncUltraApiClient</span><span class="p">(</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>    <span class="n">client_kwargs</span><span class="o">=</span><span class="p">{</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>        <span class="s2">&quot;proxies&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;https&quot;</span><span class="p">:</span> <span class="s2">&quot;socks5://user:pass@host:port&quot;</span><span class="p">}</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>    <span class="p">}</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="p">)</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="c1"># HTTP 代理</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="n">client</span> <span class="o">=</span> <span class="n">AsyncUltraApiClient</span><span class="p">(</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>    <span class="n">client_kwargs</span><span class="o">=</span><span class="p">{</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>        <span class="s2">&quot;proxies&quot;</span><span class="p">:</span> <span class="p">{</span>
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>            <span class="s2">&quot;http&quot;</span><span class="p">:</span> <span class="s2">&quot;http://proxy.example.com:8080&quot;</span><span class="p">,</span>
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>            <span class="s2">&quot;https&quot;</span><span class="p">:</span> <span class="s2">&quot;http://proxy.example.com:8080&quot;</span>
+<a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>        <span class="p">}</span>
+<a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a>    <span class="p">}</span>
+<a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a><span class="p">)</span>
+</code></pre></div>
+<h4 id="_33">自定义请求头</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">client</span> <span class="o">=</span> <span class="n">AsyncUltraApiClient</span><span class="p">(</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>    <span class="n">client_kwargs</span><span class="o">=</span><span class="p">{</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>        <span class="s2">&quot;headers&quot;</span><span class="p">:</span> <span class="p">{</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>            <span class="s2">&quot;User-Agent&quot;</span><span class="p">:</span> <span class="s2">&quot;MyApp/1.0&quot;</span><span class="p">,</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>            <span class="s2">&quot;Accept-Language&quot;</span><span class="p">:</span> <span class="s2">&quot;zh-CN,zh;q=0.9&quot;</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>        <span class="p">}</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>    <span class="p">}</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="p">)</span>
+</code></pre></div>
+<h4 id="ssl">SSL 配置</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">client</span> <span class="o">=</span> <span class="n">AsyncUltraApiClient</span><span class="p">(</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>    <span class="n">client_kwargs</span><span class="o">=</span><span class="p">{</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>        <span class="s2">&quot;verify&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>  <span class="c1"># 启用 SSL 验证</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>        <span class="c1"># 或自定义 CA 包</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>        <span class="s2">&quot;verify&quot;</span><span class="p">:</span> <span class="s2">&quot;/path/to/ca-bundle.crt&quot;</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>    <span class="p">}</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="p">)</span>
+</code></pre></div>
+<h4 id="dns">DNS 配置</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">client</span> <span class="o">=</span> <span class="n">AsyncUltraApiClient</span><span class="p">(</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>    <span class="n">client_kwargs</span><span class="o">=</span><span class="p">{</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>        <span class="s2">&quot;resolve&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;api.jup.ag:443:1.2.3.4&quot;</span><span class="p">],</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>        <span class="s2">&quot;dns_servers&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;1.1.1.1&quot;</span><span class="p">,</span> <span class="s2">&quot;1.0.0.1&quot;</span><span class="p">]</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>    <span class="p">}</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="p">)</span>
+</code></pre></div>
+<h3 id="_34">环境变量</h3>
+<table>
+<thead>
+<tr>
+<th>变量</th>
+<th>描述</th>
+<th>格式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PRIVATE_KEY</code></td>
+<td>Solana 钱包私钥</td>
+<td>Base58 字符串或 uint8 数组</td>
+</tr>
+<tr>
+<td><code>JUPITER_API_KEY</code></td>
+<td>Jupiter API 密钥</td>
+<td>字符串</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_35">私钥格式</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1"># Base58 格式（推荐）</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PRIVATE_KEY</span><span class="o">=</span><span class="s2">&quot;5KQwr...xyz&quot;</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="c1"># Uint8 数组格式</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PRIVATE_KEY</span><span class="o">=</span><span class="s2">&quot;[10,229,131,132,213,96,74,22,...]&quot;</span>
+</code></pre></div>
+<h2 id="_36">🚨 错误处理</h2>
+<h3 id="_37">常见异常</h3>
+<table>
+<thead>
+<tr>
+<th>异常</th>
+<th>描述</th>
+<th>发生时机</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ValueError</code></td>
+<td>无效的输入参数</td>
+<td>私钥格式无效、缺少必需字段</td>
+</tr>
+<tr>
+<td><code>requests.HTTPError</code></td>
+<td>HTTP 错误</td>
+<td>API 错误（4xx、5xx 响应）</td>
+</tr>
+<tr>
+<td><code>ConnectionError</code></td>
+<td>网络连接问题</td>
+<td>网络问题、代理问题</td>
+</tr>
+<tr>
+<td><code>TimeoutError</code></td>
+<td>请求超时</td>
+<td>请求完成时间过长</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_38">响应状态码</h3>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>"Success"</code></td>
+<td>操作成功完成</td>
+</tr>
+<tr>
+<td><code>"Failed"</code></td>
+<td>操作失败</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_39">错误响应结构</h3>
+<p>失败的响应包含额外的错误信息：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>status</code></td>
+<td><code>str</code></td>
+<td>始终为 <code>"Failed"</code></td>
+</tr>
+<tr>
+<td><code>error</code></td>
+<td><code>str</code></td>
+<td>人类可读的错误信息</td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>str</code></td>
+<td>用于程序处理的错误代码</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_40">常见错误代码</h3>
+<table>
+<thead>
+<tr>
+<th>错误代码</th>
+<th>描述</th>
+<th>可能的解决方案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>INSUFFICIENT_BALANCE</code></td>
+<td>代币不足无法交换</td>
+<td>检查余额，减少金额</td>
+</tr>
+<tr>
+<td><code>SLIPPAGE_EXCEEDED</code></td>
+<td>价格变动超出容忍度</td>
+<td>重试或调整滑点</td>
+</tr>
+<tr>
+<td><code>INVALID_MINT</code></td>
+<td>无效的代币铸造地址</td>
+<td>验证铸造地址</td>
+</tr>
+<tr>
+<td><code>RATE_LIMITED</code></td>
+<td>请求过于频繁</td>
+<td>在请求之间添加延迟</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_41">错误处理示例</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>    <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">order_and_execute</span><span class="p">(</span><span class="n">order_request</span><span class="p">)</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>    <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;status&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;Failed&quot;</span><span class="p">:</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>        <span class="n">error_code</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">)</span>
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>        <span class="n">error_message</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;error&quot;</span><span class="p">)</span>
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>        <span class="k">if</span> <span class="n">error_code</span> <span class="o">==</span> <span class="s2">&quot;INSUFFICIENT_BALANCE&quot;</span><span class="p">:</span>
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;❌ 余额不足无法交换&quot;</span><span class="p">)</span>
+<a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>        <span class="k">elif</span> <span class="n">error_code</span> <span class="o">==</span> <span class="s2">&quot;SLIPPAGE_EXCEEDED&quot;</span><span class="p">:</span>
+<a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;❌ 价格变动过大，请重试&quot;</span><span class="p">)</span>
+<a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>        <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;❌ 错误: </span><span class="si">{</span><span class="n">error_message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ 成功: </span><span class="si">{</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;signature&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a>
+<a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a><span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;❌ 配置错误: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a><span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">HTTPError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-20-20" name="__codelineno-20-20" href="#__codelineno-20-20"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;❌ API 错误: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-20-21" name="__codelineno-20-21" href="#__codelineno-20-21"></a><span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-20-22" name="__codelineno-20-22" href="#__codelineno-20-22"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;❌ 意外错误: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="_42">🛠️ 实用方法</h2>
+<h3 id="get_public_key">get_public_key()</h3>
+<p>获取配置钱包的公钥。</p>
+<h4 id="_43">方法签名</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1"># 异步</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_public_key</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="c1"># 同步</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_public_key</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span>
+</code></pre></div>
+<h4 id="_44">返回值</h4>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>str</code></td>
+<td>Base58 编码的公钥</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_45">示例</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="n">public_key</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">get_public_key</span><span class="p">()</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;钱包地址: </span><span class="si">{</span><span class="n">public_key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="close">close()</h3>
+<p>关闭客户端并清理资源。</p>
+<h4 id="_46">方法签名</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1"># 异步</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="c1"># 同步</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+<h4 id="_47">示例</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># 使用完毕后始终关闭客户端</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>    <span class="c1"># 您的操作在这里</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>    <span class="k">pass</span>
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="k">finally</span><span class="p">:</span>
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>    <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>  <span class="c1"># 异步客户端</span>
+<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>    <span class="c1"># client.close()      # 同步客户端</span>
+</code></pre></div>
+<h2 id="_48">🔍 高级使用模式</h2>
+<h3 id="_49">速率限制</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="c1"># 用于并发请求限制的信号量</span>
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="n">semaphore</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Semaphore</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>  <span class="c1"># 最多 5 个并发请求</span>
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">rate_limited_request</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">mint</span><span class="p">):</span>
+<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>    <span class="k">async</span> <span class="k">with</span> <span class="n">semaphore</span><span class="p">:</span>
+<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>        <span class="k">return</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">shield</span><span class="p">([</span><span class="n">mint</span><span class="p">])</span>
+</code></pre></div>
+<h3 id="_50">重试逻辑</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">retry_operation</span><span class="p">(</span><span class="n">operation</span><span class="p">,</span> <span class="n">max_retries</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>    <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_retries</span><span class="p">):</span>
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>        <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>            <span class="k">return</span> <span class="k">await</span> <span class="n">operation</span><span class="p">()</span>
+<a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a>        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a>            <span class="k">if</span> <span class="n">attempt</span> <span class="o">==</span> <span class="n">max_retries</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+<a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a>                <span class="k">raise</span>
+<a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a>            <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">delay</span> <span class="o">*</span> <span class="p">(</span><span class="n">attempt</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+</code></pre></div>
+<h3 id="_51">批量操作</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">batch_shield_check</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">mint_lists</span><span class="p">):</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>    <span class="n">tasks</span> <span class="o">=</span> <span class="p">[</span><span class="n">client</span><span class="o">.</span><span class="n">shield</span><span class="p">(</span><span class="n">mints</span><span class="p">)</span> <span class="k">for</span> <span class="n">mints</span> <span class="ow">in</span> <span class="n">mint_lists</span><span class="p">]</span>
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>    <span class="n">results</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="o">*</span><span class="n">tasks</span><span class="p">,</span> <span class="n">return_exceptions</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>    <span class="k">return</span> <span class="n">results</span>
+</code></pre></div>
+<h3 id="_52">上下文管理器模式</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">ManagedClient</span><span class="p">:</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span> <span class="o">=</span> <span class="n">kwargs</span>
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>
+<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="fm">__aenter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">AsyncUltraApiClient</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
+<a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span>
+<a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a>
+<a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="fm">__aexit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_val</span><span class="p">,</span> <span class="n">exc_tb</span><span class="p">):</span>
+<a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">:</span>
+<a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a>            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a>
+<a id="__codelineno-28-14" name="__codelineno-28-14" href="#__codelineno-28-14"></a><span class="c1"># 使用方法</span>
+<a id="__codelineno-28-15" name="__codelineno-28-15" href="#__codelineno-28-15"></a><span class="k">async</span> <span class="k">with</span> <span class="n">ManagedClient</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;your_key&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+<a id="__codelineno-28-16" name="__codelineno-28-16" href="#__codelineno-28-16"></a>    <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">balances</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="_53">📊 性能优化建议</h2>
+<h3 id="_54">连接复用</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="c1"># 好的做法：为多个操作复用客户端</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="n">client</span> <span class="o">=</span> <span class="n">AsyncUltraApiClient</span><span class="p">()</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>    <span class="k">for</span> <span class="n">address</span> <span class="ow">in</span> <span class="n">addresses</span><span class="p">:</span>
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>        <span class="n">balances</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">balances</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
+<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a>        <span class="c1"># 处理余额</span>
+<a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a><span class="k">finally</span><span class="p">:</span>
+<a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a>    <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a>
+<a id="__codelineno-29-10" name="__codelineno-29-10" href="#__codelineno-29-10"></a><span class="c1"># 避免：为每个操作创建新客户端</span>
+<a id="__codelineno-29-11" name="__codelineno-29-11" href="#__codelineno-29-11"></a><span class="k">for</span> <span class="n">address</span> <span class="ow">in</span> <span class="n">addresses</span><span class="p">:</span>
+<a id="__codelineno-29-12" name="__codelineno-29-12" href="#__codelineno-29-12"></a>    <span class="n">client</span> <span class="o">=</span> <span class="n">AsyncUltraApiClient</span><span class="p">()</span>
+<a id="__codelineno-29-13" name="__codelineno-29-13" href="#__codelineno-29-13"></a>    <span class="n">balances</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">balances</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
+<a id="__codelineno-29-14" name="__codelineno-29-14" href="#__codelineno-29-14"></a>    <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>  <span class="c1"># 低效</span>
+</code></pre></div>
+<h3 id="_55">并发操作</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="c1"># 高效的并发处理</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">process_addresses</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">addresses</span><span class="p">):</span>
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>    <span class="n">tasks</span> <span class="o">=</span> <span class="p">[</span><span class="n">client</span><span class="o">.</span><span class="n">balances</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span> <span class="k">for</span> <span class="n">addr</span> <span class="ow">in</span> <span class="n">addresses</span><span class="p">]</span>
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>    <span class="n">results</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="o">*</span><span class="n">tasks</span><span class="p">)</span>
+<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a>    <span class="k">return</span> <span class="n">results</span>
+</code></pre></div>
+<h3 id="_56">超时配置</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="c1"># 为您的用例设置适当的超时</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="n">client</span> <span class="o">=</span> <span class="n">AsyncUltraApiClient</span><span class="p">(</span>
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>    <span class="n">client_kwargs</span><span class="o">=</span><span class="p">{</span>
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a>        <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>  <span class="c1"># 快速操作</span>
+<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>        <span class="c1"># &quot;timeout&quot;: 60,  # 慢速操作</span>
+<a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a>    <span class="p">}</span>
+<a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a><span class="p">)</span>
+</code></pre></div>
+<hr />
+<p>更多示例和用例，请参阅<a href="../examples/">代码示例</a>文档。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/solanab/pyjupiter" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://discord.gg/jup" target="_blank" rel="noopener" title="discord.gg" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M492.5 69.8c-.2-.3-.4-.6-.8-.7-38.1-17.5-78.4-30-119.7-37.1-.4-.1-.8 0-1.1.1s-.6.4-.8.8c-5.5 9.9-10.5 20.2-14.9 30.6-44.6-6.8-89.9-6.8-134.4 0-4.5-10.5-9.5-20.7-15.1-30.6-.2-.3-.5-.6-.8-.8s-.7-.2-1.1-.2C162.5 39 122.2 51.5 84.1 69c-.3.1-.6.4-.8.7C7.1 183.5-13.8 294.6-3.6 404.2c0 .3.1.5.2.8s.3.4.5.6c44.4 32.9 94 58 146.8 74.2.4.1.8.1 1.1 0s.7-.4.9-.7c11.3-15.4 21.4-31.8 30-48.8.1-.2.2-.5.2-.8s0-.5-.1-.8-.2-.5-.4-.6-.4-.3-.7-.4c-15.8-6.1-31.2-13.4-45.9-21.9-.3-.2-.5-.4-.7-.6s-.3-.6-.3-.9 0-.6.2-.9.3-.5.6-.7c3.1-2.3 6.2-4.7 9.1-7.1.3-.2.6-.4.9-.4s.7 0 1 .1c96.2 43.9 200.4 43.9 295.5 0 .3-.1.7-.2 1-.2s.7.2.9.4c2.9 2.4 6 4.9 9.1 7.2.2.2.4.4.6.7s.2.6.2.9-.1.6-.3.9-.4.5-.6.6c-14.7 8.6-30 15.9-45.9 21.8-.2.1-.5.2-.7.4s-.3.4-.4.7-.1.5-.1.8.1.5.2.8c8.8 17 18.8 33.3 30 48.8.2.3.6.6.9.7s.8.1 1.1 0c52.9-16.2 102.6-41.3 147.1-74.2.2-.2.4-.4.5-.6s.2-.5.2-.8c12.3-126.8-20.5-236.9-86.9-334.5zm-302 267.7c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.4 59.2-52.8 59.2m195.4 0c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.2 59.2-52.8 59.2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.sections", "header.autohide", "content.code.copy", "content.code.select", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
+      
+    
+  </body>
+</html>
