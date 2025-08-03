@@ -1,6 +1,6 @@
 [project]
 name = "pyjupiter"
-version = "0.0.4"
+version = "0.0.1"
 description = "High-performance sync/async Python SDK for Jupiter Exchange APIs, powered by curl_cffi."
 authors = [{ name = "solanab", email = "whiredj@gmail.com" }]
 license = { text = "MIT" }
